@@ -38,7 +38,7 @@
             rgba(192, 218, 255, 0.7)
         );
     }
-            /*estilo da previsão*/
+            /*estilo de como fica a previsão*/
     #container  {
         width: 50%;
         max-width: 720px;
@@ -48,6 +48,12 @@
         border-radius: 20px;
         padding: 18px;
         color:rgb(255, 255, 255, 100);
+    }
+
+    @media screen and (min-width: 100%) {
+        #container {
+            width: 100%;
+        }   
     }
 
     #search {
@@ -307,4 +313,5 @@
         margin-top: 5px;
 
     }
+
 
