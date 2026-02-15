@@ -1,192 +1,308 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    * {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-}
+            /*estilo da pagina toda*/
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(
+            rgba(14, 62, 91, 0.7), 
+            rgba(9, 125, 174, 0.7), 
+            rgba(7, 201, 255, 0.7), 
+            rgba(32, 219, 216, 0.7));
+    }
 
-* {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    body.nuvem {
+        background: linear-gradient(
+            rgba(24, 37, 62, 0.7),
+            rgba(70, 90, 141, 0.7),
+            rgba(127, 151, 231, 0.7),
+            rgba(192, 218, 255, 0.7)
+        );
+    }
+            /*estilo da previsão*/
+    #container  {
+        width: 50%;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: rgba(131, 56, 56, 0.25);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        padding: 18px;
+        color:rgb(255, 255, 255, 100);
+    }
 
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: linear-gradient(
-        rgba(14, 62, 91, 0.7), 
-        rgba(9, 125, 174, 0.7), 
-        rgba(7, 201, 255, 0.7), 
-        rgba(32, 219, 216, 0.7));
-}
+    #search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 10px;
+        padding: 4px 12px;
+    }
 
-body.nuvem {
-    background: linear-gradient(
-        rgba(24, 37, 62, 0.7),
-        rgba(70, 90, 141, 0.7),
-        rgba(127, 151, 231, 0.7),
-        rgba(192, 218, 255, 0.7)
-    );
-}
+            /*Modificação de como vai se expandir*/
+    #container {
+        transform: scale(1);
+        transition: transform, 0.5s, ease,;
+    }
 
-#container  {
-    background-color: rgba(131, 56, 56, 0.25);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    padding: 18px;
-    color:rgb(255, 255, 255, 100);
-}
+    #search input {
+        border: none;
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 1px 6px;
+        font-size: 16px;
+        width: 100%;
+    }
 
-#search {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-radius: 10px;
-    padding: 4px 12px;
-}
+    #search input[type="search"]::-webkit-search-cancel-button { 
+        filter: brightness(0.1);
+        cursor: pointer;
+    }
 
-#container {
-    transform: scale(1);
-    transition: transform, 0.5s, ease,;
-}
+    #search input:focus-visible {
+        outline: none;
+    }
 
-#search input {
-    border: none;
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 1px 6px;
-    font-size: 16px;
-    width: 100%;
-}
+    #search button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        color: #ffffff;
+    }
 
-#search input[type="search"]::-webkit-search-cancel-button { 
-    filter: brightness(0.1);
-    cursor: pointer;
-}
+            /*Modificação da mensagem de erro*/
+    #errorBox p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+        margin-top: 12px;
+    }
 
-#search input:focus-visible {
-    outline: none;
-}
+    #errorBox.hide {
+        display: none;
+    }
 
-#search button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: #ffffff;
-}
+    #errorBox.show {
+        display: block;
+    }
 
-#errorBox p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
-    margin-top: 12px;
-}
+            /*Previsão do tempo mostrar ou esconder*/
+    #weather {
+        margin-top: 20px;
+        display: none;
+    }
 
-#errorBox.hide {
-    display: none;
-}
+    #weather.show {
+        display: block;
+        animation: fadeInUp 2.5s ease forwards;
+    }
 
-#errorBox.show {
-    display: block;
-}
-
-#weather {
-    margin-top: 20px;
-    display: none;
-}
-
-#weather.show {
-    display: block;
-    animation: fadeInUp 2.5s ease forwards;
-}
-
-#weather.hide{
-    display: none;
-    animation: fadeInUp 2.5s ease forwards;
-}
+    #weather.hide{
+        display: none;
+        animation: fadeInUp 2.5s ease forwards;
+    }
 
 
-#weather #title {
-    text-align: center;
-    margin-bottom: 5px;
-    font-weight: 600;
-    font-size: 30px;
-    color: #ffffff;
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
-}
+    #weather #title {
+        text-align: center;
+        margin-bottom: 5px;
+        font-weight: 600;
+        font-size: 30px;
+        color: #ffffff;
+        filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+    }
 
-#temp {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 20px;
-    background: linear-gradient(
-        rgba(70, 90, 141, 0.3), 
-        rgba(127, 151, 231, 0.3), 
-        rgba(192, 218, 255, 0.3));
-    border-radius: 20px;
-    padding: 20px;
-}
+    #temp {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 20px;
+        background: linear-gradient(
+            rgba(70, 90, 141, 0.3), 
+            rgba(127, 151, 231, 0.3), 
+            rgba(192, 218, 255, 0.3));
+        border-radius: 20px;
+        padding: 20px;
+    }
 
-#temp_img {
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
-}
+    #temp_img {
+        filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+    }
 
-#temp_value {
-    font-weight: bold;
-    font-size: 50px;
-    line-height: 55px;
-}
+    #temp_value {
+        font-weight: bold;
+        font-size: 50px;
+        line-height: 55px;
+    }
 
-#temp_description {
-    font-weight: 500;
-    text-transform: capitalize;
-}
+    #temp_description {
+        font-weight: 500;
+        text-transform: capitalize;
+    }
 
-#other_infos {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
+            /*Informações adicionais*/
+    #other_infos {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
 
-#other_infos .info {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 4px 10px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(
-        rgba(70, 90, 141, 0.3), 
-        rgba(127, 151, 231, 0.3), 
-        rgba(192, 218, 255, 0.3));
-        gap: 10px;
-}
+    #other_infos .info {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 4px 10px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(
+            rgba(70, 90, 141, 0.3), 
+            rgba(127, 151, 231, 0.3), 
+            rgba(192, 218, 255, 0.3));
+            gap: 10px;
+    }
 
-#other_infos .info p {
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
-}
+    #other_infos .info p {
+        filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+    }
 
-#other_info .info h2 {
-    font-size: 12px;
-    font-weight: 600;
-}
+    #other_infos .info h2 {
+        font-size: 15px;
+        font-weight: 600;
+    }
 
-#other_info .info i {
-    text-align: center;
-    font-size: 20px;
-    width: 20%;
-}
+    #other_infos .info i {
+        text-align: center;
+        font-size: 15px;
+        width: 20%;
+    }
+
+    #toggleContainer {
+        margin-top: 20px;
+    }
+            /*Previsão proximas horas*/
+    #hourForecast_container {
+        margin-top: 30px;
+        display: none;
+        gap: 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
+        width: 100%;
+        box-sizing: border-box;
+        padding-bottom: 12px;
+    }
+
+    #hourForecast_container::-webkit-scrollbar {
+        height: 12px;
+    }
+
+    #hourForecast_container::-webkit-scrollbar-track {
+        background: rgb(0, 0, 0, 0.1);
+        border-radius: 99px;
+    }
+
+    #hourForecast_container::-webkit-scrollbar-thumb {
+        background: rgb(0, 0, 0, 0.15);
+        border-radius: 99px;
+    }
+
+    #hourForecast_container.show {
+        display: flex;
+    }
+
+    #hourForecast_container .info {
+        text-align: center;
+        padding: 8px 16.5px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(
+            rgba(70, 90, 141, 0.3), 
+            rgba(127, 151, 231, 0.3), 
+            rgba(192, 218, 255, 0.3));
+            gap: 10px;
+    }
+
+    #hourForecast_container img {
+        max-width: 48px; 
+        height: auto; 
+        display: block; 
+    }
+
+    #hourForecast_container h5 {
+        margin-top: 5px;
+    }
+
+            /*Previsão proximos dias*/
+    #dayForecast_container {
+        margin-top: 30px;
+        display: none;
+        gap: 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
+        width: 100%;
+        box-sizing: border-box;
+        padding-bottom: 12px;
+    }
+
+    #dayForecast_container::-webkit-scrollbar {
+        height: 12px;
+    }
+
+    #dayForecast_container::-webkit-scrollbar-track {
+        background: rgb(0, 0, 0, 0.1);
+        border-radius: 99px;
+    }
+
+    #dayForecast_container::-webkit-scrollbar-thumb {
+        background: rgb(0, 0, 0, 0.15);
+        border-radius: 99px;
+    }
+
+    #dayForecast_container.show {
+        display: flex;
+    }
+
+    #dayForecast_container .info {
+        text-align: center;
+        padding: 8px 10px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(
+            rgba(70, 90, 141, 0.3), 
+            rgba(127, 151, 231, 0.3), 
+            rgba(192, 218, 255, 0.3));
+            gap: 10px;
+    }
+
+    #dayForecast_container img {
+        max-width: 48px; 
+        height: auto; 
+        display: block; 
+    }
+
+    #dayForecast_container h5 {
+        margin-top: 5px;
+    }
