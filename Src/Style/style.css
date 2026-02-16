@@ -50,13 +50,6 @@
         color:rgb(255, 255, 255, 100);
     }
 
-    @media screen and (min-width: 500px) {
-        #container {
-            width: 100%;
-            max-width: none;
-        }   
-    }
-
     #search {
         display: flex;
         align-items: center;
@@ -314,6 +307,7 @@
         margin-top: 5px;
 
     }
+
 
 
 
