@@ -47,10 +47,12 @@ form.addEventListener('submit', async (event) => {
             const div = document.createElement("div")
             div.classList.add("info")
             const hora = new Date(item.dt * 1000).getHours().toString().padStart(2, "0");
+            const rainProb = Math.round(item.pop * 100);
             div.innerHTML = ` 
             <h5>${hora}:00</h5> 
             <img src="http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png" alt="clima"> 
-            <h5>${Math.round(item.main.temp)} °C</h5> `;
+            <h5>${Math.round(item.main.temp)} °C</h5> 
+            <h5>${rainProb} %</h5>`;
             hourContainer.appendChild(div);
         }); 
             const dayContainer = document.getElementById("dayForecast_container"); 
@@ -66,12 +68,14 @@ form.addEventListener('submit', async (event) => {
             });
 
         Object.entries(days).slice(0, 5).forEach(([dia, item]) => { 
-            const div = document.createElement("div"); 
+            const div = document.createElement("div");
+            const rainProb = Math.round(item.pop * 100); 
             div.classList.add("info"); 
             div.innerHTML = ` 
             <h5>${dia}</h5> 
             <img src="http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png" alt="clima"> 
-            <h5>${Math.round(item.main.temp)} °C</h5> `
+            <h5>${Math.round(item.main.temp)} °C</h5>
+            <h5>${rainProb} %</h5> `
             ;
             dayContainer.appendChild(div);
         });
