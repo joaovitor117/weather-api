@@ -41,7 +41,7 @@
             /*estilo de como fica a previsão*/
     #container  {
         width: 50%;
-        max-width: 600px;
+        max-width: 500px;
         margin: 0 auto;
         background-color: rgba(131, 56, 56, 0.25);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -314,6 +314,7 @@
         margin-top: 5px;
 
     }
+
 
 
 
