@@ -50,7 +50,7 @@
         color:rgb(255, 255, 255, 100);
     }
 
-    @media screen{
+    @media screen and (min-width: 1000px) {
         #container {
             width: 100%;
         }   
@@ -313,6 +313,7 @@
         margin-top: 5px;
 
     }
+
 
 
 
