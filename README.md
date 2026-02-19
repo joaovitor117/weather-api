@@ -22,3 +22,17 @@ Aplicação web que consome uma API de clima para exibir informações meteorol�
 1. Clone o repositório:
    ```bash
    git clone https://github.com/joaovitor117/weather-api
+
+##📚 Aprendizados
+
+Este projeto foi desenvolvido para praticar:
+
+Consumo de APIs
+
+Manipulação de DOM
+
+Assincronismo (fetch / async-await)
+
+##👨‍💻 Autor
+
+João Vitor Aguiar e Silva
