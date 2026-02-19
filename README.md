@@ -32,7 +32,3 @@ Consumo de APIs
 Manipulação de DOM
 
 Assincronismo (fetch / async-await)
-
-##👨‍💻 Autor
-
-João Vitor Aguiar e Silva
